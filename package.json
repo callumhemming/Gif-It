@@ -3,6 +3,9 @@
   "version": "1.0.1",
   "description": "",
   "main": "dist/index.js",
+  "bin":{
+    "@callumhemming/gif-it": "dist/index.js"
+  },
   "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
