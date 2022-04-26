@@ -3,12 +3,11 @@
   "version": "1.0.2",
   "description": "",
   "main": "dist/index.js",
-  "bin": {
-    "@callumhemming/gif-it": "dist/index.js"
-  },
+  "bin": "dist/index.js",
   "types": "index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsc && node ./dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -26,7 +25,9 @@
   },
   "dependencies": {
     "chalk": "^5.0.1",
+    "fs": "^0.0.1-security",
     "inquirer": "^8.2.2",
+    "puppeteer": "^13.6.0",
     "shelljs": "^0.8.5"
   }
 }
