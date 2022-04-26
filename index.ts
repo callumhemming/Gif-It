@@ -2,8 +2,13 @@
 import Shell from "shelljs"
 import  puppeteer  from "puppeteer"
 import fs from "fs"
+import Config from "./config"
 
 import { getRandomString } from "./utils"
+
+
+const {path, filePrefix, outputFolder} = Config()
+
 
 
 if(!Shell.which('git')) {
@@ -11,30 +16,17 @@ if(!Shell.which('git')) {
     Shell.exit(1)
 }
 
-
-
-Shell.echo("Checking if output folder exists")
-
-if(!fs.existsSync("./GifitOutput")){
-    
-    Shell.echo("Output folder does not exists")
-    Shell.echo("Creating output folder")
-    Shell.mkdir('--','GifitOutput')
-
-}
-
-
 (async()=>{
     const browser = await puppeteer.launch({
-        // headless:false,
+        headless:false,
         args:['--start-maximized'],
         defaultViewport: null,
 
     })
     const page = await browser.newPage()
     
-    await page.goto("http://localhost:3000/contact")
-    await page.screenshot({path: `./GifitOutput/test${getRandomString(5)}.png`})
+    await page.goto(path)
+    await page.screenshot({path: `${outputFolder}/${filePrefix}${getRandomString(5)}.png`})
 
     await browser.close()
 })()
