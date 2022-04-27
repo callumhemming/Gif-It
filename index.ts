@@ -1,35 +1,35 @@
 #!/usr/bin/env node
 import Shell from "shelljs"
 import  puppeteer  from "puppeteer"
-import fs from "fs"
+
 import Config from "./config"
-
-import { getRandomString } from "./utils"
-
-
-const {path, filePrefix, outputFolder} = Config()
+import getRandomString from "./utils/getRandomString"
+import getGitCommits from "./utils/getGitCommits"
+import takeScreenshot from "./utils/takeScreenshot"
 
 
+const configArgs = Config();
 
-if(!Shell.which('git')) {
-    Shell.echo("Run me on git idiot")
-    Shell.exit(1)
-}
+(async ()=>{
 
-(async()=>{
-    const browser = await puppeteer.launch({
-        headless:false,
-        args:['--start-maximized'],
-        defaultViewport: null,
+    if(!Shell.which('git')) {
+        Shell.echo("Run me on git idiot")
+        Shell.exit(1)
+    }
 
+    const commits = getGitCommits()
+    commits.forEach(async ()=>{
+        await takeScreenshot(configArgs)
     })
-    const page = await browser.newPage()
-    
-    await page.goto(path)
-    await page.screenshot({path: `${outputFolder}/${filePrefix}${getRandomString(5)}.png`})
 
-    await browser.close()
+
+
 })()
+
+
+
+    
+
 
 
 
