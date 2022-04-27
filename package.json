@@ -26,6 +26,7 @@
   "dependencies": {
     "chalk": "^5.0.1",
     "fs": "^0.0.1-security",
+    "git-log-nodejs": "^0.5.0",
     "inquirer": "^8.2.2",
     "puppeteer": "^13.6.0",
     "shelljs": "^0.8.5"

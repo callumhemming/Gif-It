@@ -1,9 +1,17 @@
 import Shell from "shelljs"
+import {commits} from "git-log-nodejs"
 
-export default async function getGitCommits():Promise<string[]>{
+interface Commits{
+    author:{name:string, email:string};
+    name:string;
+    email:string;
+}
+type CommitsArray=Commits[]
 
-    const repoLog = await Shell.exec('git log --pretty=tformat:"%h"')
-    const arrayOfCommits = repoLog.split('\r\n')
+export default async function getGitCommits():Promise<any>{
+    Shell.echo("Getting commits")
+    const commitsArray = await commits()
+    const commitsRev = commitsArray.reverse()
+    return commitsRev
 
-    return arrayOfCommits
 }

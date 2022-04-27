@@ -1,12 +1,19 @@
 #!/usr/bin/env node
 import Shell from "shelljs"
 import  puppeteer  from "puppeteer"
-
 import Config from "./config"
-import getRandomString from "./utils/getRandomString"
 import getGitCommits from "./utils/getGitCommits"
+import pullDown from "./utils/pullDown"
 import takeScreenshot from "./utils/takeScreenshot"
 
+
+interface Commits{
+    author:{name:string, email:string};
+    date:string;
+    parent:string;
+    hash:string;
+}
+type CommitsArray=Commits[]
 
 const configArgs = Config();
 
@@ -19,11 +26,14 @@ const configArgs = Config();
 
     const commits = await getGitCommits()
 
-   
     commits.forEach(async (commit)=>{
-        await Shell.exec(`git checkout ${commit}`)
+
+        await pullDown(commit.hash)
         await takeScreenshot(configArgs)
+        
     })
+    
+  
 
 
 

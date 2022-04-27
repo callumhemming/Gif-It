@@ -16,7 +16,7 @@ export default async function takeScreenshot(
     const {path, outputFolder, filePrefix} = args
 
   const browser = await puppeteer.launch({
-    headless: false,
+    // headless: false,
     args: ["--start-maximized"],
     defaultViewport: null,
   });
