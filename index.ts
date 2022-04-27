@@ -3,7 +3,7 @@ import Shell from "shelljs"
 import  puppeteer  from "puppeteer"
 import Config from "./config"
 import getGitCommits from "./utils/getGitCommits"
-import pullDown from "./utils/pullDown"
+import {pullDown, pullUp} from "./utils/pullDown"
 import takeScreenshot from "./utils/takeScreenshot"
 
 
@@ -30,7 +30,8 @@ const configArgs = Config();
 
         await pullDown(commit.hash)
         await takeScreenshot(configArgs)
-        
+        await pullUp()
+
     })
     
   
