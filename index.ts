@@ -17,8 +17,11 @@ const configArgs = Config();
         Shell.exit(1)
     }
 
-    const commits = getGitCommits()
-    commits.forEach(async ()=>{
+    const commits = await getGitCommits()
+
+   
+    commits.forEach(async (commit)=>{
+        await Shell.exec(`git checkout ${commit}`)
         await takeScreenshot(configArgs)
     })
 

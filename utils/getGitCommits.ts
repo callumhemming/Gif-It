@@ -1,9 +1,9 @@
 import Shell from "shelljs"
 
-export default function getGitCommits():string[]{
+export default async function getGitCommits():Promise<string[]>{
 
-    const repoLog = Shell.exec('git log --pretty=tformat:"%h"')
-    const arrayOfCommits = repoLog.split('\r\n').forEach(v=>console.log(v))
+    const repoLog = await Shell.exec('git log --pretty=tformat:"%h"')
+    const arrayOfCommits = repoLog.split('\r\n')
 
     return arrayOfCommits
 }
