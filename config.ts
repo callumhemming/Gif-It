@@ -38,7 +38,7 @@ const configJson = fs.existsSync(configFileName)?
     }
 
     return({
-      path: configJson?.path ?? "http://localhost:3000/contact",
+      path: configJson?.path ?? "http://localhost:3000/",
       filePrefix: configJson?.filePrefix ?? "picture",
       outputFolder: configJson?.outputFolder ?? "./GifitOutput"
     })

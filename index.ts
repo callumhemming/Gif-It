@@ -24,6 +24,8 @@ const configArgs = Config();
 
     await Shell.exec(`git checkout 26eadfd8228fb7b3ec0d311b68f2e9d06845b2af`)
 
+    await Shell.exec(`git checkout main`)
+
     // if(!Shell.which('git')) {
     //     Shell.echo("Run me on git idiot")
     //     Shell.exit(1)
