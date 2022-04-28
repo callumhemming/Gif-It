@@ -17,22 +17,29 @@ type CommitsArray=Commits[]
 
 const configArgs = Config();
 
+
+
+
 (async ()=>{
 
-    if(!Shell.which('git')) {
-        Shell.echo("Run me on git idiot")
-        Shell.exit(1)
-    }
+    await Shell.exec(`git checkout 26eadfd8228fb7b3ec0d311b68f2e9d06845b2af`)
 
-    const commits = await getGitCommits()
+    // if(!Shell.which('git')) {
+    //     Shell.echo("Run me on git idiot")
+    //     Shell.exit(1)
+    // }
 
-    commits.forEach(async (commit)=>{
 
-        await pullDown(commit.hash)
-        await takeScreenshot(configArgs)
-        await pullUp()
 
-    })
+    // const commits = await getGitCommits()
+
+    // commits.forEach(async (commit)=>{
+
+    //     await pullDown(commit.hash)
+    //     await takeScreenshot(configArgs)
+    //     await pullUp()
+
+    // })
     
   
 
