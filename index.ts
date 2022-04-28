@@ -22,26 +22,24 @@ const configArgs = Config();
 
 (async ()=>{
 
-    await Shell.exec(`git checkout 26eadfd8228fb7b3ec0d311b68f2e9d06845b2af`)
 
-    await Shell.exec(`git checkout main`)
 
-    // if(!Shell.which('git')) {
-    //     Shell.echo("Run me on git idiot")
-    //     Shell.exit(1)
-    // }
+    if(!Shell.which('git')) {
+        Shell.echo("Run me on git idiot")
+        Shell.exit(1)
+    }
 
 
 
-    // const commits = await getGitCommits()
+    const commits = await getGitCommits()
 
-    // commits.forEach(async (commit)=>{
+    commits.forEach(async (commit)=>{
 
-    //     await pullDown(commit.hash)
-    //     await takeScreenshot(configArgs)
-    //     await pullUp()
+        await pullDown(commit.hash)
+        await takeScreenshot(configArgs)
+        await pullUp()
 
-    // })
+    })
     
   
 
