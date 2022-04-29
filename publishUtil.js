@@ -1,5 +1,7 @@
-import fs from "fs"
-import Shell from "shelljs"
+
+const fs = require("fs")
+const Shell = require("shelljs")
+
 
 function incrementVersion(){
     const readPackageJSON = JSON.parse(fs.readFileSync('package.json', 'utf8'))
