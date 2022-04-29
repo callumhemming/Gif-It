@@ -5,11 +5,10 @@
   "main": "dist/index.js",
   "bin": "dist/index.js",
   "types": "index.d.ts",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsc && node ./dist/index.js",
-    "publish": "node ./publishUtil.js && exit 1"
+    "publishUtility": "node ./publishUtil.js"
   },
   "repository": {
     "type": "git",
