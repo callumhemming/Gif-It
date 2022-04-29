@@ -6,6 +6,7 @@ import getGitCommits from "./utils/getGitCommits"
 import {pullDown, pullUp} from "./utils/pullDown"
 import takeScreenshot from "./utils/takeScreenshot"
 import inquirer from "inquirer"
+import fs from "fs"
 
 interface Commit{
     author:{name:string, email:string};
@@ -52,6 +53,8 @@ const configArgs = Config();
     // process.chdir(`${process.cwd()}\\${folder}`)
     // console.log("Current directory: ",process.cwd())
     await Shell.exec("npm i")
+
+    if(!fs.existsSync("../GifitOutput")){Shell.exec("mkdir ./GifitOutput")}
 
 
     await inquirer.prompt([{name: "Cd run dev", message:"Cd into Test and npm run dev"}])
