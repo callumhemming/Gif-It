@@ -52,7 +52,7 @@ const configArgs = Config();
     // process.chdir(`${process.cwd()}\\${folder}`)
     // console.log("Current directory: ",process.cwd())
     await Shell.exec("npm i")
-    await Shell.exec("npm run dev")
+    await Shell.exec("npm run dev&")
 
     const commits = await getGitCommits()
 
