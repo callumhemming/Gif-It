@@ -17,4 +17,6 @@ function incrementVersion(){
 Shell.exec("tsc")
 if(fs.existsSync("./dist/Test")){Shell.exec("rm -rf ./dist/Test")}
 if(fs.existsSync("./dist/GifitOutput")){Shell.exec("rm -rf ./dist/GifitOutput")}
+if(fs.existsSync("../GifitTestSite/Test")){Shell.exec("rm -rf ../GifitTestSite/Test")}
+if(fs.existsSync("../GifitTestSite/GifitOutput")){Shell.exec("rm -rf ../GifitTestSite/GifitOutput")}
 Shell.echo(`Increment version to ${incrementVersion()}`)
