@@ -13,6 +13,8 @@ export default async function takeScreenshot(
   args:ScreenshotArgs,
 ): Promise<any> {
 
+
+  console.log(process.cwd())
     const {path, outputFolder, filePrefix} = args
 
   const browser = await puppeteer.launch({
