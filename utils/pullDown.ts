@@ -1,7 +1,7 @@
 import Shell from "shelljs"
 
 export  async function pullDown(hash:string){
-    
+    console.log("Pulling down ",hash)
   return await Shell.exec(`
         git checkout ${hash}
         `)
