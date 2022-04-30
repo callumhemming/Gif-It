@@ -65,7 +65,9 @@ const configArgs = Config();
 
     commits.forEach(async (commit:Commit)=>{
 
-        await pullDown(commit.hash).then(()=>takeScreenshot(configArgs)).then(()=>pullUp())
+        await Shell.exec(`git checkout ${commit.hash}`)
+        await takeScreenshot(configArgs)
+        await Shell.exec(`git checkout main`)
 
 
     })
