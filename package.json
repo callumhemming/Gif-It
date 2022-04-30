@@ -8,7 +8,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsc && node ./dist/index.js",
-    "publishUtility": "node ./publishUtil.js"
+    "compileUtil": "node ./scripts/compileUtil.js"
   },
   "repository": {
     "type": "git",
