@@ -72,102 +72,31 @@ const configArgs = Config();
     
 
 
-
-    let startServer = exec("npm run dev")
-    await Shell.exec(`git checkout ${commits[1].hash}`)
-    let {path, outputFolder, filePrefix} = configArgs
-    let browser = await puppeteer.launch({
-    args: ["--start-maximized"],
-    defaultViewport: null,
-    })
-    let page = await browser.newPage();
-    await page.goto(path);
-    setTimeout(() => {
-        console.log("Delayed for 300 ms");
-    }, 300)
-    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
-    await page.screenshot({
-        path: `../${outputFolder}/${filePrefix}${getRandomString(5)}.png`,
-    })
-    startServer.kill()
-    await Shell.exec(`git checkout main`)
-    await browser.close();
-
-    
-
-
-    startServer = exec("npm run dev")
-    await Shell.exec(`git checkout ${commits[2].hash}`)
- 
-    browser = await puppeteer.launch({
-    args: ["--start-maximized"],
-    defaultViewport: null,
-    })
-     page = await browser.newPage();
-    await page.goto(path);
-    setTimeout(() => {
-        console.log("Delayed for 300 ms");
-    }, 300)
-    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
-    await page.screenshot({
-        path: `../${outputFolder}/${filePrefix}${getRandomString(5)}.png`,
-    })
-    startServer.kill()
-    await Shell.exec(`git checkout main`)
-    await browser.close();
+    for(let i=0; i <= commits.length; i++){
+        
+        
+            let startServer = exec("npm run dev")
+            await Shell.exec(`git checkout ${commits[i].hash}`)
+            let {path, outputFolder, filePrefix} = configArgs
+            let browser = await puppeteer.launch({
+            args: ["--start-maximized"],
+            defaultViewport: null,
+            })
+            let page = await browser.newPage();
+            await page.goto(path);
+            setTimeout(() => {
+                console.log("Delayed for 300 ms");
+            }, 300)
+            await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+            await page.screenshot({
+                path: `../${outputFolder}/${filePrefix}${String(i)}.png`,
+            })
+            startServer.kill()
+            await Shell.exec(`git checkout main`)
+            await browser.close();
+    }
 
     
-
-
-
-    startServer = exec("npm run dev")
-    await Shell.exec(`git checkout ${commits[3].hash}`)
- 
-    browser = await puppeteer.launch({
-    args: ["--start-maximized"],
-    defaultViewport: null,
-    })
-     page = await browser.newPage();
-    await page.goto(path);
-    setTimeout(() => {
-        console.log("Delayed for 300 ms");
-    }, 300)
-    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
-    await page.screenshot({
-        path: `../${outputFolder}/${filePrefix}${getRandomString(5)}.png`,
-    })
-    startServer.kill()
-    await Shell.exec(`git checkout main`)
-    await browser.close();
-
-
-
-    startServer = exec("npm run dev")
-    await Shell.exec(`git checkout ${commits[4].hash}`)
- 
-    browser = await puppeteer.launch({
-    args: ["--start-maximized"],
-    defaultViewport: null,
-    })
-     page = await browser.newPage();
-    await page.goto(path);
-    setTimeout(() => {
-        console.log("Delayed for 300 ms");
-    }, 300)
-    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
-    await page.screenshot({
-        path: `../${outputFolder}/${filePrefix}${getRandomString(5)}.png`,
-    })
-    startServer.kill()
-    await Shell.exec(`git checkout main`)
-    await browser.close();
-
-
-    
-  
-
-
-
 })()
 
 
