@@ -11,9 +11,6 @@ function incrementVersion(){
     return versionArray.join(".")
 }
 
-
-// Shell.exec(`npm version ${incrementVersion()}`)
-// Shell.exec(`npm publish`)
 Shell.exec("tsc")
 if(fs.existsSync("./dist/Test")){Shell.exec("rm -rf ./dist/Test")}
 if(fs.existsSync("./dist/GifitOutput")){Shell.exec("rm -rf ./dist/GifitOutput")}

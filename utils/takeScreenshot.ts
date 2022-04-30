@@ -26,7 +26,7 @@ export default async function takeScreenshot(
 
   await page.goto(path);
   await page.screenshot({
-    path: `${outputFolder}/${filePrefix}${getRandomString(5)}.png`,
+    path: `../${outputFolder}/${filePrefix}${getRandomString(5)}.png`,
   });
 
   return await browser.close();
