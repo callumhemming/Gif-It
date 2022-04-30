@@ -18,7 +18,7 @@ export default async function takeScreenshot(
   const startServer = exec("npm run dev")
   
   
-  await Shell.exec(`git checkout ${commit.hash}`).then(()=>{console.log("Checking out ", commit.hash)})
+  await Shell.exec(`git checkout ${commit.hash}`)
   
 
 
