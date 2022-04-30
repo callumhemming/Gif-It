@@ -7,7 +7,9 @@ import {pullDown, pullUp} from "./utils/pullDown"
 import takeScreenshot from "./utils/takeScreenshot"
 import inquirer from "inquirer"
 import fs from "fs"
+import {exec} from "child_process"
 
+import getRandomString from "./utils/getRandomString"
 interface Commit{
     author:{name:string, email:string};
     date:string;
@@ -58,22 +60,61 @@ const configArgs = Config();
 
     
 
-    await inquirer.prompt([{name: "Cd run dev", message:"Cd into Test and npm run dev"}])
-    .then(answer=>console.log(answer))
-
     const commits = await getGitCommits()
+    /////////////////////////////////////////////////////
 
-    commits.forEach( (commit:Commit, index:number)=>{
+    // commits.forEach( (commit:Commit, index:number)=>{
 
-        console.log("loop through commits ",index)
-        takeScreenshot(configArgs, commit)
+    //     console.log("loop through commits ",index)
+    //     takeScreenshot(configArgs, commit)
 
-    })
+    // })
     
 
 
 
-    // console.log(repo.slice(0,repo.length-1))
+    let startServer = exec("npm run dev")
+    await Shell.exec(`git checkout ${commits[1].hash}`)
+    let {path, outputFolder, filePrefix} = configArgs
+    let browser = await puppeteer.launch({
+    args: ["--start-maximized"],
+    defaultViewport: null,
+    })
+    let page = await browser.newPage();
+    await page.goto(path);
+    setTimeout(() => {
+        console.log("Delayed for 300 ms");
+    }, 300)
+    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+    await page.screenshot({
+        path: `../${outputFolder}/${filePrefix}${getRandomString(5)}.png`,
+    })
+    startServer.kill()
+    await Shell.exec(`git checkout main`)
+    await browser.close();
+
+    
+
+
+    startServer = exec("npm run dev")
+    await Shell.exec(`git checkout ${commits[2].hash}`)
+ 
+    browser = await puppeteer.launch({
+    args: ["--start-maximized"],
+    defaultViewport: null,
+    })
+     page = await browser.newPage();
+    await page.goto(path);
+    setTimeout(() => {
+        console.log("Delayed for 300 ms");
+    }, 300)
+    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+    await page.screenshot({
+        path: `../${outputFolder}/${filePrefix}${getRandomString(5)}.png`,
+    })
+    startServer.kill()
+    await Shell.exec(`git checkout main`)
+    await browser.close();
 
 
     
