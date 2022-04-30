@@ -18,7 +18,7 @@ export default async function takeScreenshot(
   const startServer = exec("npm run dev")
   
   
-  await Shell.exec(`git checkout ${commit.hash}`)
+  await Shell.exec(`git checkout ${commit.hash}`).then(()=>{console.log("Checking out ", commit.hash)})
   
 
 
@@ -30,15 +30,18 @@ export default async function takeScreenshot(
     // headless: false,
     args: ["--start-maximized"],
     defaultViewport: null,
-  });
+  })
   const page = await browser.newPage();
 
   await page.goto(path);
+  setTimeout(() => {
+    console.log("Delayed for 300 ms");
+  }, 300)
 
   await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
   await page.screenshot({
     path: `../${outputFolder}/${filePrefix}${getRandomString(5)}.png`,
-  });
+  }).then(()=>console.log("Taking pictue of ",commit.hash));;
 
 
   startServer.kill()

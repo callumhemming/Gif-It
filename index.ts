@@ -63,8 +63,9 @@ const configArgs = Config();
 
     const commits = await getGitCommits()
 
-    commits.forEach( (commit:Commit)=>{
+    commits.forEach( (commit:Commit, index:number)=>{
 
+        console.log("loop through commits ",index)
         takeScreenshot(configArgs, commit)
 
     })
