@@ -76,6 +76,9 @@ const configArgs = Config();
         
         
             let startServer = exec("npm run dev")
+            setTimeout(() => {
+                console.log("Delayed for 300 ms");
+            }, 300)
             await Shell.exec(`git checkout ${commits[i].hash}`)
             let {path, outputFolder, filePrefix} = configArgs
             let browser = await puppeteer.launch({
