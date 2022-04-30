@@ -56,6 +56,7 @@ const configArgs = Config();
 
     if(!fs.existsSync("../GifitOutput")){Shell.exec("mkdir ./GifitOutput")}
 
+    
 
     await inquirer.prompt([{name: "Cd run dev", message:"Cd into Test and npm run dev"}])
     .then(answer=>console.log(answer))
@@ -64,9 +65,8 @@ const configArgs = Config();
 
     commits.forEach(async (commit:Commit)=>{
 
-        await pullDown(commit.hash)
-        await takeScreenshot(configArgs)
-        await pullUp()
+        await pullDown(commit.hash).then(()=>takeScreenshot(configArgs)).then(()=>pullUp())
+
 
     })
     
