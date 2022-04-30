@@ -21,4 +21,4 @@ if(fs.existsSync("../GifitTestSite/Test")){Shell.exec("rm -rf ../GifitTestSite/T
 if(fs.existsSync("../GifitTestSite/GifitOutput")){Shell.exec("rm -rf ../GifitTestSite/GifitOutput")}
 Shell.exec('git commit -am "Clearing changes..."')
 Shell.exec(`npm version ${incrementVersion()}`)
-Shell.exec("npm pack -pack-destination ../GifitTestSite/")
+Shell.exec("npm pack -pack-destination ../GifitTestSite/bins")
