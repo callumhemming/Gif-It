@@ -41,7 +41,7 @@ export default async function takeScreenshot(
   await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
   await page.screenshot({
     path: `../${outputFolder}/${filePrefix}${getRandomString(5)}.png`,
-  }).then(()=>console.log("Taking pictue of ",commit.hash));;
+  })
 
 
   startServer.kill()
