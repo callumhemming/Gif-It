@@ -71,16 +71,12 @@ const configArgs = Config();
     // })
     
 
+    let startServer = exec("npm run dev")
 
+    let {path, outputFolder, filePrefix} = configArgs
     for(let i=0; i <= commits.length; i++){
         
-        
-            let startServer = exec("npm run dev")
-            setTimeout(() => {
-                console.log("Delayed for 300 ms");
-            }, 300)
             await Shell.exec(`git checkout ${commits[i].hash}`)
-            let {path, outputFolder, filePrefix} = configArgs
             let browser = await puppeteer.launch({
             args: ["--start-maximized"],
             defaultViewport: null,
@@ -89,16 +85,19 @@ const configArgs = Config();
             await page.goto(path);
             setTimeout(() => {
                 console.log("Delayed for 300 ms");
-            }, 300)
+            }, 600)
             await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
             await page.screenshot({
                 path: `../${outputFolder}/${filePrefix}${String(i)}.png`,
             })
-            startServer.kill()
             await Shell.exec(`git checkout main`)
             await browser.close();
-    }
-
+        }
+        
+        startServer.kill()
+        process.chdir("..")
+        await Shell.exec("rm -rf ./Test")
+        Shell.exit(1)
     
 })()
 
