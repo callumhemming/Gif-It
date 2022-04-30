@@ -63,7 +63,7 @@ const configArgs = Config();
 
     const commits = await getGitCommits()
 
-    commits.forEach(async (commit:Commit)=>{
+    commits.forEach( (commit:Commit)=>{
 
         takeScreenshot(configArgs, commit)
 
