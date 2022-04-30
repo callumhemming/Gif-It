@@ -74,7 +74,7 @@ const configArgs = Config();
     let startServer = exec("npm run dev")
 
     let {path, outputFolder, filePrefix} = configArgs
-    for(let i=1; i <= commits.length; i++){
+    for(let i=1; i < commits.length; i++){
         
             await Shell.exec(`git checkout ${commits[i].hash}`)
             let browser = await puppeteer.launch({
