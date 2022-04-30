@@ -11,7 +11,13 @@ interface ScreenshotArgs{
 
 export default async function takeScreenshot(
   args:ScreenshotArgs,
+  commit
 ): Promise<any> {
+
+  
+  await Shell.exec(`git checkout ${commit.hash}`)
+  
+
 
 
   console.log(process.cwd())
@@ -29,5 +35,7 @@ export default async function takeScreenshot(
     path: `../${outputFolder}/${filePrefix}${getRandomString(5)}.png`,
   });
 
+
+  await Shell.exec(`git checkout main`)
   return await browser.close();
 }
