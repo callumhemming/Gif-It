@@ -94,8 +94,8 @@ const configArgs = Config();
                     path: `../${outputFolder}/${filePrefix}${String(i)}.png`,
                 })
                 await browser.close();
-            }catch(err){
-                console.log("Error skipping")
+            }catch(error){
+                console.log("Error skipping ",error)
                 err = true
             }finally{
                 await Shell.exec(`git checkout main`)
