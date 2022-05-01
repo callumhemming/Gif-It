@@ -72,6 +72,7 @@ const configArgs = Config();
     
 
     let startServer = exec("npm run dev")
+    console.log("Process: ",startServer, process.cwd())
     setTimeout(() => {
         console.log("Delayed for 600 ms");
     }, 600)
