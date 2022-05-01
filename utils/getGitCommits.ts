@@ -11,7 +11,7 @@ type CommitsArray=Commits[]
 export default async function getGitCommits():Promise<any>{
     Shell.echo("Getting commits")
     const commitsArray = await commits()
-    const commitsRev = commitsArray.reverse()
-    return [...commitsRev.slice(0,5)]
+    // const commitsRev = commitsArray.reverse()
+    return [...commitsArray.slice(0,5)]
 
 }
