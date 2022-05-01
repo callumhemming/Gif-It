@@ -72,9 +72,12 @@ const configArgs = Config();
     
 
     let startServer = exec("npm run dev")
-
+    setTimeout(() => {
+        console.log("Delayed for 600 ms");
+    }, 600)
     let {path, outputFolder, filePrefix} = configArgs
     for(let i=1; i < commits.length; i++){
+       
             let err = false;
             await Shell.exec(`git checkout ${commits[i].hash}`)
             try{
