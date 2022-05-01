@@ -77,21 +77,26 @@ const configArgs = Config();
     for(let i=1; i < commits.length; i++){
         
             await Shell.exec(`git checkout ${commits[i].hash}`)
-            let browser = await puppeteer.launch({
-            args: ["--start-maximized"],
-            defaultViewport: null,
-            })
-            let page = await browser.newPage();
-            await page.goto(path);
-            setTimeout(() => {
-                console.log("Delayed for 300 ms");
-            }, 600)
-            await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
-            await page.screenshot({
-                path: `../${outputFolder}/${filePrefix}${String(i)}.png`,
-            })
-            await Shell.exec(`git checkout main`)
-            await browser.close();
+            try{
+
+                let browser = await puppeteer.launch({
+                args: ["--start-maximized"],
+                defaultViewport: null,
+                })
+                let page = await browser.newPage();
+                await page.goto(path);
+                setTimeout(() => {
+                    console.log("Delayed for 300 ms");
+                }, 600)
+                await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+                await page.screenshot({
+                    path: `../${outputFolder}/${filePrefix}${String(i)}.png`,
+                })
+                await Shell.exec(`git checkout main`)
+                await browser.close();
+            }catch(err){
+                continue
+            }
         }
         
         startServer.kill()
