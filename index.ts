@@ -75,7 +75,7 @@ const configArgs = Config();
 
     let {path, outputFolder, filePrefix} = configArgs
     for(let i=1; i < commits.length; i++){
-        
+            let err = false;
             await Shell.exec(`git checkout ${commits[i].hash}`)
             try{
 
@@ -88,15 +88,18 @@ const configArgs = Config();
                 setTimeout(() => {
                     console.log("Delayed for 300 ms");
                 }, 600)
+                await page.setDefaultNavigationTimeout(0); 
                 await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
                 await page.screenshot({
                     path: `../${outputFolder}/${filePrefix}${String(i)}.png`,
                 })
-                await Shell.exec(`git checkout main`)
                 await browser.close();
             }catch(err){
                 console.log("Error skipping")
-                continue
+                err = true
+            }finally{
+                await Shell.exec(`git checkout main`)
+                if(err){continue}
             }
         }
         
