@@ -95,6 +95,7 @@ const configArgs = Config();
                 await Shell.exec(`git checkout main`)
                 await browser.close();
             }catch(err){
+                console.log("Error skipping")
                 continue
             }
         }
